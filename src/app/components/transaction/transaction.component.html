@@ -1,0 +1,190 @@
+<body class="hold-transition register-page">
+
+
+    <div class="register-box" *ngIf="!ok">
+        <div class="register-logo">
+        </div>
+
+        <div class="card">
+            <div class="card-body register-card-body">
+                <p class="login-box-msg">Ajouter un nouveau Utilisateur</p>
+
+                <form [formGroup]="transactionForm">
+
+                    <label class="container">
+                    <input type="checkbox"formControlName="theCheckbox"  data-md-icheck (change)="toggleVisibility($event)"/>
+                    Cliquer ICI pour Le Retrait/ou L'envoi
+                      <span class="checkmark"></span>
+                    </label>
+
+
+
+                    <div class="input-group mb-3" *ngIf="marked">
+                        <input type="text" formControlName="code" class="form-control" placeholder="Code Retrait">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="telEnv" value={{telEnv}} class="form-control" placeholder="Tel Envoiyeur">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="montant" value={{montant}} class="form-control" placeholder="montant">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="prenomEnv" value={{prenomEnv}} class="form-control" placeholder="Prenom Envoyeur">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="nomEnv" value={{nomEnv}} class="form-control" placeholder="Nom Envoyeur">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="prenomBenef" value={{prenomBenef}} class="form-control" placeholder="Prenom Benefisseur">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="nomBenef" value={{nomBenef}} class="form-control" placeholder="Nom Benefisseur">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="telBenef" value={{telBenef}} class="form-control" placeholder="Tel Benefisseur">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-3" *ngIf="marked">
+                        <input type="text" formControlName="cnibenef" class="form-control" placeholder="Taper le CNI">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!isUserP()">
+                        <div class="input-group mb-3" *ngIf="!marked">
+                            <select formControlName="comptesEnv" class="form-control">
+                    <option  value="/api/comptes/{{comptesEn.id}}" *ngFor="let comptesEn of comptesEn">{{comptesEn.numero}}</option>
+                  </select>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-check-square"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="input-group mb-3" *ngIf="marked">
+                            <select formControlName="comptesRet" class="form-control" placeholder="Nom Benefisseur">
+                          <option>Compte Retrait</option>
+
+                  <option  value="/api/comptes/{{comptesEn.id}}" *ngFor="let comptesEn of comptesEn">{{comptesEn.numero}}</option>
+                </select>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-check-square"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-8 ">
+                            <div class="icheck-primary ">
+                                <label for="agreeTerms ">
+            </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4 ">
+                            <button type="submit " (click)="ajoutTransaction()" class="btn btn-primary btn-block ">Envoi</button>
+                        </div>
+                        <!-- /.col -->
+
+                    </div>
+                </form>
+
+                <div class="social-auth-links text-center ">
+
+                </div>
+
+            </div>
+            <!-- /.form-box -->
+        </div>
+        <!-- /.card -->
+    </div>
+
+
+    <div class="recu" *ngIf="ok">
+        <div id="pdfTable" #pdfTable>
+
+            <h1>{{name}}</h1>
+            <b>Information D'Envoyeur</b>:
+            <br> Nom: {{nomEnv}} Prenom:{{prenomEnv}} Tel:{{telEnv}} <br>
+
+
+
+            <br>
+            <hr>
+            <b>Information Receveur</b>:
+            <br> Nom:{{nomBenef}} Prenom:{{prenomBenef}} Tel: {{telBenef}} <i *ngIf="!oui"> CNI:{{cni}}</i><br>
+
+            <br>
+            <hr>
+
+            <b>Information Suplementaire</b>:
+            <br> Reglement: En Spece <br> Code Retrait :{{codeEnv}} <br> Date Envoi:{{dateEnv}} <br> <i *ngIf="oui">Date Retrait:{{dateRet}}</i> <br>
+
+
+
+            <br>
+            <hr>
+            <br>Sigature
+        </div>
+
+        <div> <button (click)="downloadAsPDF()">Imprimer Le Recu</button></div>
+    </div>
+
+
+
+
+
+</body>
+<!-- /.register-box -->

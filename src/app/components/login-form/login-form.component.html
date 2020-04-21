@@ -1,0 +1,51 @@
+<body class="hold-transition login-page">
+    <div class="login-box">
+
+        <div class="card">
+            <div class="login-logo btn btn-primary btn-block">
+                <a class="i"><b>Kodo</b>Transfert</a>
+            </div>
+            <div class="card-body login-card-body">
+
+                <form [formGroup]="loginForm">
+                    <div class="input-group mb-3">
+                        <input type="email" formControlName="username" placeholder="Email" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" formControlName="password" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" [disabled]="!loginForm.valid" (click)="onSubmit()" class="btn btn-primary btn-block">Sign In</button>
+                            <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+
+                <!-- /.social-auth-links -->
+
+
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+</body>

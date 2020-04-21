@@ -1,0 +1,65 @@
+<body class="hold-transition register-page">
+    <div class="register-box">
+        <div class="register-logo">
+        </div>
+
+        <div class="card">
+            <div class="card-body register-card-body">
+                <p class="login-box-msg">Ajouter Une Affectation</p>
+
+                <form [formGroup]="affectationForm">
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="dateFin" class="form-control" placeholder="Date Fin D'affectation">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <select formControlName="users" class="form-control">
+                    <option  value="/api/users/{{user.id}}" *ngFor="let user of user">{{user.Nom}}</option>
+                  </select>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-check-square"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <select formControlName="comptes" class="form-control">
+                  <option  value="/api/comptes/{{compte.id}}" *ngFor="let compte of compte">{{compte.numero}}</option>
+                </select>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-check-square"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-8 ">
+                            <div class="icheck-primary ">
+                                <label for="agreeTerms ">
+            </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4 ">
+                            <button type="submit " (click)="ajoutAffectation() " class="btn btn-primary btn-block ">Valider</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+
+                <div class="social-auth-links text-center ">
+
+                </div>
+
+            </div>
+            <!-- /.form-box -->
+        </div>
+        <!-- /.card -->
+    </div>
+</body>
+<!-- /.register-box -->

@@ -1,0 +1,56 @@
+<body class="hold-transition register-page">
+    <div class="register-box">
+        <div class="register-logo">
+        </div>
+
+        <div class="card">
+            <div class="card-body register-card-body">
+                <p class="login-box-msg">Faire un Depot </p>
+
+                <form [formGroup]="depotForm">
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="montant" class="form-control" placeholder="Montant">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="input-group mb-3">
+                        <select formControlName="compte" class="form-control">
+                    <option  value="/api/comptes/{{compte.id}}" *ngFor="let compte of compte">{{compte.numero}}</option>
+                  </select>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-check-square"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-8 ">
+                            <div class="icheck-primary ">
+                                <label for="agreeTerms ">
+            </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4 ">
+                            <button type="submit" (click)="adddepot() " class="btn btn-primary btn-block ">Ajouter</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+
+                <div class="social-auth-links text-center ">
+
+                </div>
+
+            </div>
+            <!-- /.form-box -->
+        </div>
+        <!-- /.card -->
+    </div>
+</body>
+<!-- /.register-box -->

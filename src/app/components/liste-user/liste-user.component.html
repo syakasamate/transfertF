@@ -1,0 +1,151 @@
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Navbar -->
+
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Liste Des Utilisateurs</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="registre">Ajouter un User</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <form [formGroup]="searchForm">
+                                        <div class="card-tools">
+                                            <div class="input-group input-group-sm" style="width: 150px;">
+                                                <input type="text" formControlName="searchText" class="form-control float-right" placeholder="Search">
+
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <!-- /.card-header -->
+                                <div class="card-body table-responsive p-0" style="height: 300px;">
+                                    <table class="table table-head-fixed text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th>Profil</th>
+                                                <th>Nom</th>
+                                                <th>Email</th>
+                                                <th>Roles</th>
+                                                <th>Status</th>
+                                                +
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let registre of registre ">
+                                                <td><img [src]="imageSource1(registre)"></td>
+
+                                                <td>{{registre.Nom}}</td>
+                                                <td>{{registre.username}}</td>
+                                                <td>{{registre.roles}}</td>
+                                                <td>
+                                                    <div class="custom-control custom-switch ">
+                                                        <input type="checkbox" class="custom-control-input" id="customSwitch{{registre.id}}" (click)="bloquer(registre)" [checked]="registre.isActive">
+                                                        <label class="custom-control-label" for="customSwitch{{registre.id}}"></label>
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+                <b>Version</b> 3.0.2
+            </div>
+            <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+
+</body>
+
+
+
+
+
+
+<table class="table ">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>libelle</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>iamge</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let registre of registre | filter:searchText">
+
+            <img [src]="imageSource1(registre)">
+
+            <td>{{registre.id}}</td>
+            <td>{{registre.Nom}}</td>
+            <td>{{registre.username}}</td>
+            <td>
+                <div class="custom-control custom-switch ">
+                    <input type="checkbox" class="custom-control-input" id="customSwitch{{registre.id}}" (click)="bloquer(registre)" [checked]="registre.isActive">
+                    <label class="custom-control-label" for="customSwitch{{registre.id}}"></label>
+                </div>
+            </td>
+
+        </tr>
+    </tbody>
+</table>
